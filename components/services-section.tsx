@@ -241,7 +241,7 @@ export function ServicesSection() {
                   href={generateTelegramUrl("Функциональные тренировки", functionalSessions)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-[160px] inline-block text-center bg-primary text-primary-foreground px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-medium hover:opacity-90 hover:shadow-lg transition-all duration-300"
+                  className="w-full max-w-[160px] md:max-w-[260px] inline-block text-center bg-primary text-primary-foreground px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-medium md:whitespace-nowrap hover:opacity-90 hover:shadow-lg transition-all duration-300"
                 >
                   Оформить
                 </a>
