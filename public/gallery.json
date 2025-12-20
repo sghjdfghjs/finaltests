@@ -6,6 +6,12 @@
       "public_id": "gallery/gym/lijdhtprsgn4kmfhqqtq"
     }
   ],
-  "boxing": [],
+  "boxing": [
+    {
+      "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766257870/gallery/boxing/xcfmjebwy5kwfuxol0va.jpg",
+      "type": "image",
+      "public_id": "gallery/boxing/xcfmjebwy5kwfuxol0va"
+    }
+  ],
   "students": []
 }
