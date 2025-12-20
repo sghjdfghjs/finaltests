@@ -19,6 +19,7 @@ export function GallerySection() {
   })
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<{ item: MediaItem; index: number } | null>(null)
+  const [refreshKey, setRefreshKey] = useState(0)
 
   const categories = [
     { id: "gym" as GalleryCategory, label: "Зал" },
@@ -30,9 +31,30 @@ export function GallerySection() {
     const fetchGallery = async () => {
       try {
         const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-        const response = await fetch(`${basePath}/gallery.json?nocache=${Date.now()}`)
+        const response = await fetch(`${basePath}/gallery.json?t=${Date.now()}`, {
+          cache: "no-store",
+          headers: {
+            "Cache-Control": "no-cache",
+          },
+        })
         const data = await response.json()
-        setMedia(data)
+        const filteredData: Record<GalleryCategory, MediaItem[]> = {
+          gym: [],
+          boxing: [],
+          students: [],
+        }
+
+        Object.keys(data).forEach((key) => {
+          const category = key as GalleryCategory
+          if (Array.isArray(data[category])) {
+            filteredData[category] = data[category].filter(
+              (item: MediaItem) => item && item.url && item.url.trim() !== "",
+            )
+          }
+        })
+
+        setMedia(filteredData)
+        setRefreshKey((prev) => prev + 1)
       } catch (error) {
         console.error("Failed to load gallery:", error)
       } finally {
@@ -41,6 +63,9 @@ export function GallerySection() {
     }
 
     fetchGallery()
+
+    const interval = setInterval(fetchGallery, 30000)
+    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
@@ -65,7 +90,7 @@ export function GallerySection() {
   }, [selectedMedia, media, activeCategory])
 
   return (
-    <section id="gallery" className="py-12 px-4 bg-background">
+    <section id="gallery" className="py-12 px-4 bg-background lg:pt-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-normal mb-8 text-foreground">Галерея</h2>
 
@@ -97,17 +122,22 @@ export function GallerySection() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {media[activeCategory].map((item, index) => (
                   <div
-                    key={index}
+                    key={`${activeCategory}-${item.public_id || item.url}-${index}-${refreshKey}`}
                     className="aspect-[4/3] bg-card rounded-xl overflow-hidden relative cursor-pointer group"
                     onClick={() => setSelectedMedia({ item, index })}
                   >
                     {item.type === "video" ? (
-                      <video src={item.url} className="w-full h-full object-cover" />
+                      <video src={item.url} className="w-full h-full object-cover" preload="metadata" />
                     ) : (
                       <img
                         src={item.url || "/placeholder.svg"}
                         alt={`${activeCategory} ${index + 1}`}
                         className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        loading="lazy"
+                        onError={(e) => {
+                          console.error("[v0] Image failed to load:", item.url)
+                          e.currentTarget.style.display = "none"
+                        }}
                       />
                     )}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">

@@ -77,7 +77,7 @@ export function ServicesSection() {
   }
 
   return (
-    <section id="services" className="py-12 px-6 bg-background">
+    <section id="services" className="py-12 px-6 bg-background lg:pb-6">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-light text-foreground mb-8 lg:text-4xl">Услуги</h2>
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:grid-rows-[2fr_1fr]">
@@ -94,7 +94,7 @@ export function ServicesSection() {
               </div>
 
               <div className="flex flex-col h-full relative z-10">
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-normal text-foreground mb-3 md:mb-4 lg:mb-6 text-balance max-w-[60%] lg:max-w-full">
+                <h3 className="text-xl md:text-2xl font-normal text-foreground mb-3 md:mb-4 lg:mb-6 text-balance max-w-[60%] lg:max-w-full lg:whitespace-nowrap">
                   Тренировки в зале
                 </h3>
 
@@ -172,7 +172,7 @@ export function ServicesSection() {
               </div>
 
               <div className="flex flex-col h-full relative z-10">
-                <h3 className="text-xl md:text-2xl font-normal text-foreground mb-3 md:mb-4 text-balance max-w-[60%]">
+                <h3 className="text-xl md:text-2xl font-normal text-foreground mb-3 md:mb-4 lg:mb-6 text-balance max-w-[60%] lg:max-w-full lg:whitespace-nowrap">
                   Тренировки по боксу
                 </h3>
 
@@ -216,7 +216,7 @@ export function ServicesSection() {
               </div>
 
               <div className="flex flex-col h-full relative z-10">
-                <h3 className="text-xl md:text-2xl font-normal text-foreground mb-3 md:mb-4 text-balance max-w-[60%]">
+                <h3 className="text-xl md:text-2xl font-normal text-foreground mb-3 md:mb-4 lg:mb-6 text-balance max-w-[60%] lg:max-w-full lg:whitespace-nowrap">
                   Функциональные тренировки
                 </h3>
 
