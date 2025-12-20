@@ -2,10 +2,6 @@
   "gym": [],
   "boxing": [
     {
-      "url": "/boxing-training.jpg",
-      "type": "image"
-    },
-    {
       "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766251190/gallery/boxing/wzn3dx5w2z3tbomgdzb5.jpg",
       "type": "image",
       "public_id": "gallery/boxing/wzn3dx5w2z3tbomgdzb5"
