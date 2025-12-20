@@ -79,10 +79,10 @@ export function Header() {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-primary"
           >
-            <img src="/images/telegram-logo.webp" alt="Telegram" className="h-6 w-6 brightness-0 invert" />
+            <img src="./images/telegram-logo.webp" alt="Telegram" className="h-6 w-6 brightness-0 invert" />
           </Link>
           <Link href="tel:+79194498792" className="text-muted-foreground transition-colors hover:text-primary">
-            <img src="/images/phone.png" alt="Phone" className="h-4 w-4 brightness-0 invert" />
+            <img src="./images/phone.png" alt="Phone" className="h-4 w-4 brightness-0 invert" />
           </Link>
 
           <button
