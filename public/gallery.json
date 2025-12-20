@@ -1,0 +1,20 @@
+{
+  "gym": [
+    {
+      "url": "/gym-equipment-variety.png",
+      "type": "image"
+    }
+  ],
+  "boxing": [
+    {
+      "url": "/boxing-training.jpg",
+      "type": "image"
+    }
+  ],
+  "students": [
+    {
+      "url": "/fitness-students.jpg",
+      "type": "image"
+    }
+  ]
+}
