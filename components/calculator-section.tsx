@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { getImagePath } from "@/lib/image-path"
 
 export function CalculatorSection() {
   const [selectedGender, setSelectedGender] = useState<"male" | "female" | null>(null)
@@ -95,7 +96,13 @@ export function CalculatorSection() {
               }`}
             >
               <div className="flex flex-col items-center gap-3">
-                <Image src="/images/man-1f468.png" alt="Мужчина" width={60} height={60} className="w-15 h-15" />
+                <Image
+                  src={getImagePath("/images/man-1f468.png") || "/placeholder.svg"}
+                  alt="Мужчина"
+                  width={60}
+                  height={60}
+                  className="w-15 h-15"
+                />
                 <span className="text-lg font-normal text-foreground">Я мужчина</span>
               </div>
             </button>
@@ -110,7 +117,13 @@ export function CalculatorSection() {
               }`}
             >
               <div className="flex flex-col items-center gap-3">
-                <Image src="/images/woman-1f469.png" alt="Женщина" width={60} height={60} className="w-15 h-15" />
+                <Image
+                  src={getImagePath("/images/woman-1f469.png") || "/placeholder.svg"}
+                  alt="Женщина"
+                  width={60}
+                  height={60}
+                  className="w-15 h-15"
+                />
                 <span className="text-lg font-normal text-foreground">Я женщина</span>
               </div>
             </button>
@@ -125,8 +138,8 @@ export function CalculatorSection() {
                   <Image
                     src={
                       selectedGender === "male"
-                        ? "/images/man-standing-1f9cd-200d-2642-fe0f.png"
-                        : "/images/woman-standing-1f9cd-200d-2640-fe0f.png"
+                        ? getImagePath("/images/man-standing-1f9cd-200d-2642-fe0f.png")
+                        : getImagePath("/images/woman-standing-1f9cd-200d-2640-fe0f.png")
                     }
                     alt="Person"
                     width={120}

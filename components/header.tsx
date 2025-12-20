@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import { getImagePath } from "@/lib/image-path"
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -28,7 +29,7 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 md:px-6 md:py-2.5 rounded-3xl bg-card/95 shadow-md backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <Image
-            src="/images/logohead.png"
+            src={getImagePath("/images/logohead.png") || "/placeholder.svg"}
             alt="Логотип тренера"
             width={45}
             height={45}
@@ -79,10 +80,18 @@ export function Header() {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-primary"
           >
-            <img src="/images/telegram-logo.webp" alt="Telegram" className="h-6 w-6 brightness-0 invert" />
+            <img
+              src={getImagePath("/images/telegram-logo.webp") || "/placeholder.svg"}
+              alt="Telegram"
+              className="h-6 w-6 brightness-0 invert"
+            />
           </Link>
           <Link href="tel:+79194498792" className="text-muted-foreground transition-colors hover:text-primary">
-            <img src="/images/phone.png" alt="Phone" className="h-4 w-4 brightness-0 invert" />
+            <img
+              src={getImagePath("/images/phone.png") || "/placeholder.svg"}
+              alt="Phone"
+              className="h-4 w-4 brightness-0 invert"
+            />
           </Link>
 
           <button

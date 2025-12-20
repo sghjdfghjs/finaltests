@@ -6,7 +6,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Тренер Ян - Профессиональные услуги тренера",
   description: "Индивидуальные программы тренировок, питание и профессиональное сопровождение",
-  generator: "treneryan.ru",
+  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon-dark-32x32.png",
-        type: "image/png",
+        url: "/icon.svg",
+        type: "image/svg+xml",
       },
     ],
     apple: "/apple-icon.png",
