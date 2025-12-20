@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
-import { getBasePath } from "@/lib/image-path"
 
 type GalleryCategory = "gym" | "boxing" | "students"
 type MediaItem = {
@@ -30,7 +29,7 @@ export function GallerySection() {
   useEffect(() => {
     const fetchGallery = async () => {
       try {
-        const basePath = getBasePath()
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
         const response = await fetch(`${basePath}/gallery.json?nocache=${Date.now()}`)
         const data = await response.json()
         setMedia(data)
