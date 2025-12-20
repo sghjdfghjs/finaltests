@@ -87,7 +87,7 @@ export function ServicesSection() {
 
               <div className="absolute right-0 bottom-0 w-[130px] h-[160px] md:w-[200px] md:h-[260px] lg:w-[280px] lg:h-[360px] pointer-events-none z-0 lg:right-2">
                 <img
-                  src="/images/vzale.png"
+                  src="./images/vzale.png"
                   alt="Тренировки в зале"
                   className="w-full h-full object-contain object-bottom"
                 />
@@ -165,7 +165,7 @@ export function ServicesSection() {
 
               <div className="absolute right-0 bottom-0 w-[130px] h-[160px] md:w-[160px] md:h-[180px] lg:w-[180px] lg:h-[200px] pointer-events-none z-0">
                 <img
-                  src="/images/box.png"
+                  src="./images/box.png"
                   alt="Тренировки по боксу"
                   className="w-full h-full object-contain object-bottom"
                 />
@@ -209,7 +209,7 @@ export function ServicesSection() {
 
               <div className="absolute right-0 bottom-0 w-[130px] h-[160px] md:w-[160px] md:h-[180px] lg:w-[180px] lg:h-[200px] pointer-events-none z-0">
                 <img
-                  src="/images/functional.png"
+                  src="./images/functional.png"
                   alt="Функциональные тренировки"
                   className="w-full h-full object-contain object-bottom"
                 />
