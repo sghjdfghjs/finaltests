@@ -1,10 +1,6 @@
 {
   "gym": [
     {
-      "url": "/gym-equipment-variety.png",
-      "type": "image"
-    },
-    {
       "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766251177/gallery/gym/aro58myvjmopylgfpptj.jpg",
       "type": "image",
       "public_id": "gallery/gym/aro58myvjmopylgfpptj"
