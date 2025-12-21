@@ -31,7 +31,7 @@ export function GallerySection() {
     const fetchGallery = async () => {
       try {
         const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-        const response = await fetch(`${basePath}/gallery.json?t=${Date.now()}`, {
+        const response = await fetch(`/gallery.json?t=${Date.now()}`, {
           cache: "no-store",
           headers: {
             "Cache-Control": "no-cache",
