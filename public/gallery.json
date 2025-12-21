@@ -1,11 +1,5 @@
 {
-  "gym": [
-    {
-      "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766257857/gallery/gym/lijdhtprsgn4kmfhqqtq.jpg",
-      "type": "image",
-      "public_id": "gallery/gym/lijdhtprsgn4kmfhqqtq"
-    }
-  ],
+  "gym": [],
   "boxing": [
     {
       "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766257870/gallery/boxing/xcfmjebwy5kwfuxol0va.jpg",
