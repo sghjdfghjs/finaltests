@@ -1,9 +1,11 @@
 {
-  "gym": [],
+  "gym": [
+    {
+      "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766315392/gallery/gym/bq6o7uadt4vl6yowj7yf.jpg",
+      "type": "image",
+      "public_id": "gallery/gym/bq6o7uadt4vl6yowj7yf"
+    }
+  ],
   "boxing": [],
   "students": []
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 20a062f7d58d02aeb760aeb0dd6589a4a8af2a03
