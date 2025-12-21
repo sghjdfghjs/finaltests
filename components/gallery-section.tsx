@@ -196,7 +196,6 @@ export function GallerySection() {
           </div>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
-            ESC для закрытия • ← → для навигации
           </div>
         </div>
       )}
