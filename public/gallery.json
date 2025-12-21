@@ -1,5 +1,11 @@
 {
-  "gym": [],
+  "gym": [
+    {
+      "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766315392/gallery/gym/bq6o7uadt4vl6yowj7yf.jpg",
+      "type": "image",
+      "public_id": "gallery/gym/bq6o7uadt4vl6yowj7yf"
+    }
+  ],
   "boxing": [
     {
       "url": "https://res.cloudinary.com/dvhvauf6f/image/upload/v1766257870/gallery/boxing/xcfmjebwy5kwfuxol0va.jpg",
