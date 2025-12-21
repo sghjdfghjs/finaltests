@@ -70,6 +70,14 @@ export function Header() {
               Галерея
             </button>
           </li>
+          <li>
+            <button
+              onClick={() => scrollToSection("reviews")}
+              className="text-muted-foreground transition-colors hover:text-primary"
+            >
+              Отзывы
+            </button>
+          </li>
         </ul>
 
         <div className="flex items-center gap-3">
@@ -127,6 +135,14 @@ export function Header() {
                 className="w-full text-left px-6 py-3 text-muted-foreground hover:bg-secondary hover:text-primary transition-colors"
               >
                 Галерея
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => scrollToSection("reviews")}
+                className="w-full text-left px-6 py-3 text-muted-foreground hover:bg-secondary hover:text-primary transition-colors"
+              >
+                Отзывы
               </button>
             </li>
           </ul>

@@ -11,7 +11,7 @@ type MediaItem = {
 }
 
 export function GallerySection() {
-  const [activeCategory, setActiveCategory] = useState<GalleryCategory>("gym")
+  const [activeCategory, setActiveCategory] = useState<GalleryCategory | null>(null)
   const [media, setMedia] = useState<Record<GalleryCategory, MediaItem[]>>({
     gym: [],
     boxing: [],
@@ -28,10 +28,22 @@ export function GallerySection() {
   ]
 
   useEffect(() => {
+    const setDefaultCategory = () => {
+      if (window.innerWidth >= 768) {
+        setActiveCategory("gym")
+      }
+    }
+
+    setDefaultCategory()
+    window.addEventListener("resize", setDefaultCategory)
+    return () => window.removeEventListener("resize", setDefaultCategory)
+  }, [])
+
+  useEffect(() => {
     const fetchGallery = async () => {
       try {
         const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ""
-        const response = await fetch(`${basePath}/gallery.json?t=${Date.now()}`, {
+        const response = await fetch(`/gallery.json?t=${Date.now()}`, {
           cache: "no-store",
           headers: {
             "Cache-Control": "no-cache",
@@ -70,7 +82,7 @@ export function GallerySection() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedMedia) return
+      if (!selectedMedia || !activeCategory) return
 
       if (e.key === "Escape") {
         setSelectedMedia(null)
@@ -90,7 +102,7 @@ export function GallerySection() {
   }, [selectedMedia, media, activeCategory])
 
   return (
-    <section id="gallery" className="py-12 px-4 bg-background lg:pt-6">
+    <section id="gallery" className="py-12 px-4 bg-background lg:py-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-normal mb-8 text-foreground">Галерея</h2>
 
@@ -114,7 +126,9 @@ export function GallerySection() {
           </div>
 
           <div className="flex-1">
-            {loading ? (
+            {!activeCategory ? (
+              <div className="text-center text-muted-foreground py-12">Выберите раздел</div>
+            ) : loading ? (
               <div className="text-center text-muted-foreground py-12">Загрузка...</div>
             ) : media[activeCategory].length === 0 ? (
               <div className="text-center text-muted-foreground py-12">Пока нет медиа в этом разделе</div>
@@ -153,7 +167,7 @@ export function GallerySection() {
         </div>
       </div>
 
-      {selectedMedia && (
+      {selectedMedia && activeCategory && (
         <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedMedia(null)}

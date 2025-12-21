@@ -85,11 +85,18 @@ export function HeroSection() {
             </div>
 
             <div className="relative w-full flex items-end justify-center lg:justify-end order-1 lg:order-2 lg:absolute lg:right-[-5%] lg:bottom-0 lg:w-1/2">
-              <img
-                src="./images/hero-trainer.png"
-                alt="Тренер"
-                className="w-full max-w-[280px] h-auto md:max-w-[350px] lg:max-w-none lg:max-h-[600px] object-contain object-bottom"
-              />
+              <div className="relative w-full max-w-[280px] md:max-w-[350px] lg:max-w-none lg:max-h-[600px]">
+                <img
+                  src="./images/hero-trainer.png"
+                  alt="Тренер"
+                  className="w-full h-auto object-contain object-bottom"
+                  style={{
+                    maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
