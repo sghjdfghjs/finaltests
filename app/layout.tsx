@@ -6,7 +6,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Тренер Ян - Профессиональные услуги тренера",
   description: "Индивидуальные программы тренировок, питание и профессиональное сопровождение",
-  generator: "v0.app",
+  generator: "treneryan.ru",
   icons: {
     icon: [
       {
