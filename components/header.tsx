@@ -25,7 +25,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 mx-4 mt-4 md:mx-8 md:mt-6">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 md:px-6 md:py-2.5 rounded-3xl bg-card/95 shadow-md backdrop-blur-sm">
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-2 md:px-6 md:py-2.5 rounded-3xl bg-card/95 shadow-md backdrop-blur-sm">
         <div className="flex items-center gap-3">
           <Image
             src="/images/logohead.png"
@@ -103,7 +103,7 @@ export function Header() {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden mx-auto max-w-7xl mt-2 bg-card/95 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden">
+        <div className="lg:hidden mx-auto max-w-[1400px] mt-2 bg-card/95 backdrop-blur-sm rounded-3xl shadow-lg overflow-hidden">
           <ul className="flex flex-col font-sans text-sm font-light">
             <li>
               <button

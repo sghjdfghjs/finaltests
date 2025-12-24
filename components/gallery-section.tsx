@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
 type GalleryCategory = "gym" | "boxing" | "students"
 type MediaItem = {
@@ -20,12 +20,24 @@ export function GallerySection() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<{ item: MediaItem; index: number } | null>(null)
   const [refreshKey, setRefreshKey] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   const categories = [
     { id: "gym" as GalleryCategory, label: "Зал" },
     { id: "boxing" as GalleryCategory, label: "Бокс" },
     { id: "students" as GalleryCategory, label: "Ученики" },
   ]
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   useEffect(() => {
     const setDefaultCategory = () => {
@@ -38,6 +50,10 @@ export function GallerySection() {
     window.addEventListener("resize", setDefaultCategory)
     return () => window.removeEventListener("resize", setDefaultCategory)
   }, [])
+
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [activeCategory])
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -101,37 +117,146 @@ export function GallerySection() {
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [selectedMedia, media, activeCategory])
 
-  return (
-    <section id="gallery" className="py-12 px-4 bg-background lg:py-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-normal mb-8 text-foreground">Галерея</h2>
+  const getSliderPosition = () => {
+    // Button widths: Зал = 70px, Бокс = 80px, Ученики = 100px
+    if (activeCategory === "gym") return "4px"
+    if (activeCategory === "boxing") return "74px" // 4px + 70px
+    return "154px" // 4px + 70px + 80px
+  }
 
-        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
-          <div className="md:w-48 md:flex-shrink-0">
-            <div className="flex md:flex-col gap-2 overflow-x-auto pb-2 md:pb-0">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex-shrink-0 px-6 py-3 rounded-xl transition-all whitespace-nowrap ${
-                    activeCategory === category.id
-                      ? "bg-primary text-primary-foreground shadow-lg"
-                      : "bg-card text-card-foreground hover:bg-card/80"
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
+  const getSliderWidth = () => {
+    if (activeCategory === "gym") return "70px"
+    if (activeCategory === "boxing") return "80px"
+    return "100px"
+  }
+
+  const handlePrevious = () => {
+    if (!activeCategory) return
+    const totalItems = media[activeCategory].length
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : totalItems - 1))
+  }
+
+  const handleNext = () => {
+    if (!activeCategory) return
+    const totalItems = media[activeCategory].length
+    setCurrentIndex((prev) => (prev < totalItems - 1 ? prev + 1 : 0))
+  }
+
+  return (
+    <section id="gallery" className="pt-8 md:pt-16 pb-16 px-4 md:px-6 bg-[#0E1215]">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-10 lg:mb-16 text-center">
+          Галерея
+        </h2>
+
+        <div className="flex flex-col gap-6">
+          <div className="flex justify-center">
+            <div className="relative bg-[#1A2228] rounded-lg p-1 inline-flex">
+              <div
+                className="absolute top-1 bottom-1 rounded-md transition-all duration-300 ease-in-out bg-[#b2dc76]"
+                style={{
+                  width: getSliderWidth(),
+                  left: getSliderPosition(),
+                }}
+              />
+
+              <button
+                onClick={() => setActiveCategory("gym")}
+                className={`relative z-10 px-5 py-2 md:py-2.5 rounded-md text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
+                  activeCategory === "gym" ? "text-[#0A1F12]" : "text-[#6B7280] hover:text-white"
+                }`}
+                style={{ width: "70px" }}
+              >
+                Зал
+              </button>
+              <button
+                onClick={() => setActiveCategory("boxing")}
+                className={`relative z-10 px-5 py-2 md:py-2.5 rounded-md text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
+                  activeCategory === "boxing" ? "text-[#0A1F12]" : "text-[#6B7280] hover:text-white"
+                }`}
+                style={{ width: "80px" }}
+              >
+                Бокс
+              </button>
+              <button
+                onClick={() => setActiveCategory("students")}
+                className={`relative z-10 px-5 py-2 md:py-2.5 rounded-md text-sm font-medium transition-colors duration-300 whitespace-nowrap ${
+                  activeCategory === "students" ? "text-[#0A1F12]" : "text-[#6B7280] hover:text-white"
+                }`}
+                style={{ width: "100px" }}
+              >
+                Ученики
+              </button>
             </div>
           </div>
 
-          <div className="flex-1">
+          <div className="w-full">
             {!activeCategory ? (
               <div className="text-center text-muted-foreground py-12">Выберите раздел</div>
             ) : loading ? (
               <div className="text-center text-muted-foreground py-12">Загрузка...</div>
             ) : media[activeCategory].length === 0 ? (
               <div className="text-center text-muted-foreground py-12">Пока нет медиа в этом разделе</div>
+            ) : isMobile ? (
+              <div className="relative">
+                <div className="aspect-[4/3] bg-card rounded-xl overflow-hidden">
+                  {media[activeCategory][currentIndex].type === "video" ? (
+                    <video
+                      src={media[activeCategory][currentIndex].url}
+                      className="w-full h-full object-cover"
+                      preload="metadata"
+                      onClick={() =>
+                        setSelectedMedia({ item: media[activeCategory][currentIndex], index: currentIndex })
+                      }
+                    />
+                  ) : (
+                    <img
+                      src={media[activeCategory][currentIndex].url || "/placeholder.svg"}
+                      alt={`${activeCategory} ${currentIndex + 1}`}
+                      className="w-full h-full object-cover cursor-pointer"
+                      loading="lazy"
+                      onClick={() =>
+                        setSelectedMedia({ item: media[activeCategory][currentIndex], index: currentIndex })
+                      }
+                      onError={(e) => {
+                        console.error("[v0] Image failed to load:", media[activeCategory][currentIndex].url)
+                        e.currentTarget.style.display = "none"
+                      }}
+                    />
+                  )}
+                </div>
+
+                {/* Navigation arrows */}
+                <button
+                  onClick={handlePrevious}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#1A2228]/80 border border-[#b2dc76]/30 flex items-center justify-center text-[#b2dc76] hover:bg-[#1A2228] hover:shadow-[0_0_20px_rgba(178,220,118,0.4)] transition-all z-10"
+                  aria-label="Предыдущее фото"
+                >
+                  <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
+                </button>
+
+                <button
+                  onClick={handleNext}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-[#1A2228]/80 border border-[#b2dc76]/30 flex items-center justify-center text-[#b2dc76] hover:bg-[#1A2228] hover:shadow-[0_0_20px_rgba(178,220,118,0.4)] transition-all z-10"
+                  aria-label="Следующее фото"
+                >
+                  <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
+                </button>
+
+                {/* Pagination dots */}
+                <div className="flex justify-center gap-2 mt-4">
+                  {media[activeCategory].map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentIndex ? "bg-[#b2dc76] w-6" : "bg-[#6B7280]"
+                      }`}
+                      aria-label={`Перейти к фото ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {media[activeCategory].map((item, index) => (
@@ -195,8 +320,7 @@ export function GallerySection() {
             )}
           </div>
 
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
-          </div>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm"></div>
         </div>
       )}
     </section>
