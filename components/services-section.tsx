@@ -77,22 +77,15 @@ export function ServicesSection() {
   }
 
   return (
-    <section id="services" className="py-16 px-4 md:px-6 pb-8 md:pb-12 bg-[#0E1215]">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="services" className="py-16 px-4 md:px-6 relative z-10 pb-8">
+      <div className="mx-auto max-w-[1400px] relative z-10">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-10 lg:mb-16 text-center">
           Мои <span className="text-[#b2dc76]">услуги</span>
         </h2>
 
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:grid-rows-[2fr_1fr]">
           <div className="flex flex-col gap-6">
-            <div
-              className="rounded-3xl p-6 lg:p-8 relative overflow-hidden lg:flex-[5] transition-all duration-300"
-              style={{
-                background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-                border: "2px solid rgba(178, 220, 118, 0.3)",
-                boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-              }}
-            >
+            <div className="bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 lg:p-8 relative overflow-hidden lg:flex-[5] transition-all duration-300">
               <div
                 className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
@@ -102,7 +95,7 @@ export function ServicesSection() {
               />
 
               <div
-                className="absolute left-[-10%] top-[-10%] w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full blur-[100px] pointer-events-none"
+                className="absolute left-[-10%] top-[-10%] w-[200px] h-[200px] md:w-[280px] md:h-[280px] rounded-full blur-[100px] pointer-events-none z-0 lg:right-2"
                 style={{ background: "radial-gradient(circle, rgba(178, 220, 118, 0.25), transparent 70%)" }}
               />
 
@@ -167,25 +160,14 @@ export function ServicesSection() {
                   href={generateTelegramUrl("Тренировки в зале", selectedSessions, selectedType)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-[160px] lg:max-w-xs inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-semibold transition-all hover:brightness-110"
-                  style={{
-                    background: "linear-gradient(to right, #138a2c, #71e23a)",
-                    color: "white",
-                  }}
+                  className="w-full max-w-[160px] lg:max-w-xs inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-bold transition-all shadow-lg shadow-[#b2dc76]/20 hover:shadow-[#b2dc76]/40 bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black"
                 >
                   Оформить
                 </a>
               </div>
             </div>
 
-            <div
-              className="hidden lg:block rounded-3xl p-6 transition-all duration-300 lg:flex-[2]"
-              style={{
-                background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-                border: "2px solid rgba(178, 220, 118, 0.3)",
-                boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-              }}
-            >
+            <div className="hidden lg:block bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 transition-all duration-300 lg:flex-[2]">
               <h4 className="text-xl font-semibold text-white mb-3">Преимущества всех тренировок</h4>
               <ul className="space-y-2 text-sm text-[#D1D5DB]">
                 <li>1. Индивидуальный подход к каждому клиенту</li>
@@ -196,14 +178,7 @@ export function ServicesSection() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div
-              className="rounded-3xl p-6 relative overflow-hidden flex-1 transition-all duration-300"
-              style={{
-                background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-                border: "2px solid rgba(178, 220, 118, 0.3)",
-                boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-              }}
-            >
+            <div className="bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 relative overflow-hidden flex-1 transition-all duration-300">
               <div
                 className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
@@ -251,25 +226,14 @@ export function ServicesSection() {
                   href={generateTelegramUrl("Тренировки по боксу", boxingSessions)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-[160px] inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-semibold transition-all hover:brightness-110"
-                  style={{
-                    background: "linear-gradient(to right, #138a2c, #71e23a)",
-                    color: "white",
-                  }}
+                  className="w-full max-w-[160px] inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-bold transition-all shadow-lg shadow-[#b2dc76]/20 hover:shadow-[#b2dc76]/40 bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black"
                 >
                   Оформить
                 </a>
               </div>
             </div>
 
-            <div
-              className="rounded-3xl p-6 relative overflow-hidden flex-1 transition-all duration-300"
-              style={{
-                background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-                border: "2px solid rgba(178, 220, 118, 0.3)",
-                boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-              }}
-            >
+            <div className="bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 relative overflow-hidden flex-1 transition-all duration-300">
               <div
                 className="absolute inset-0 opacity-[0.02] pointer-events-none"
                 style={{
@@ -317,11 +281,7 @@ export function ServicesSection() {
                   href={generateTelegramUrl("Функциональные тренировки", functionalSessions)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-[160px] md:max-w-[260px] inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-lg font-semibold md:whitespace-nowrap transition-all hover:brightness-110"
-                  style={{
-                    background: "linear-gradient(to right, #138a2c, #71e23a)",
-                    color: "white",
-                  }}
+                  className="w-full max-w-[160px] md:max-w-[260px] inline-block text-center px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-bold md:whitespace-nowrap transition-all shadow-lg shadow-[#b2dc76]/20 hover:shadow-[#b2dc76]/40 bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black"
                 >
                   Оформить
                 </a>
@@ -329,14 +289,7 @@ export function ServicesSection() {
             </div>
           </div>
 
-          <div
-            className="lg:hidden rounded-3xl p-6 transition-all duration-300"
-            style={{
-              background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-              border: "2px solid rgba(178, 220, 118, 0.3)",
-              boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-            }}
-          >
+          <div className="lg:hidden bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 transition-all duration-300">
             <h4 className="text-xl font-semibold text-white mb-3">Преимущества всех тренировок</h4>
             <ul className="space-y-2 text-sm text-[#D1D5DB]">
               <li>1. Индивидуальный подход к каждому клиенту</li>

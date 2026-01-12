@@ -97,8 +97,8 @@ export function ReviewsSection() {
   }
 
   return (
-    <section id="reviews" className="py-16 px-4 bg-background">
-      <div className="max-w-7xl mx-auto">
+    <section id="reviews" className="py-16 px-4 relative z-0">
+      <div className="max-w-7xl mx-auto relative z-0">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-foreground">Отзывы</h2>
 
         <div className="relative px-12 md:px-16">
@@ -106,12 +106,7 @@ export function ReviewsSection() {
             {getVisibleReviews().map((review, index) => (
               <div
                 key={`${review.name}-${index}`}
-                className="rounded-[24px] p-6 relative overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, #0E1215 0%, #12181C 50%, #0F2A1C 100%)",
-                  border: "2px solid rgba(178, 220, 118, 0.3)",
-                  boxShadow: "0 0 15px rgba(178, 220, 118, 0.1), inset 0 0 20px rgba(178, 220, 118, 0.02)",
-                }}
+                className="bg-gradient-to-br from-[#1a2d1a]/40 to-[#0f1a0f]/40 backdrop-blur-sm border border-[#2d4a2d]/30 rounded-3xl p-6 relative overflow-hidden transition-all duration-300"
               >
                 <div
                   className="absolute inset-0 opacity-[0.02] pointer-events-none"
