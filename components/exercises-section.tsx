@@ -315,7 +315,13 @@ export function ExercisesSection({ onModalChange }: ExercisesSectionProps) {
                 {/* Exercise video/image */}
                 <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden mb-4">
                   {exercise.videoUrl ? (
-                    <video src={exercise.videoUrl} className="w-full h-full object-cover" preload="metadata" />
+                    <video
+                      src={`${exercise.videoUrl}#t=0.1`}
+                      className="w-full h-full object-cover"
+                      preload="metadata"
+                      playsInline
+                      muted
+                    />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-12 h-12 rounded-full bg-[#b2dc76]/20 flex items-center justify-center">

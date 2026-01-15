@@ -146,13 +146,14 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
                 <>
                   <video
                     ref={videoRef}
-                    src={exercise.videoUrl}
+                    src={`${exercise.videoUrl}#t=0.1`}
                     className="w-full h-full object-cover"
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleLoadedMetadata}
                     playsInline
                     preload="metadata"
                     loop
+                    muted
                   />
                   {/* Video controls overlay */}
                   <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
