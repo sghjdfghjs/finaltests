@@ -20,17 +20,181 @@ interface Exercise {
 }
 
 const exercises: Record<MuscleGroup, Exercise[]> = {
-  chest: [],
+  chest: [
+    {
+      id: "1",
+      title: "Жим гантелей лежа",
+      muscle: "на грудные мышцы",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-chest-1.jpg",
+      videoUrl: "https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/f_auto,q_auto/v1234567890/chest-press.mp4",
+      goal: "Развитие грудных мышц",
+      steps: ["Лягте на скамью, гантели над грудью", "Опустите гантели к груди", "Выжмите вверх"],
+      important: ["Не разводите локти слишком широко", "Контролируйте движение"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "2",
+      title: "Жим штанги лежа на горизонтальной скамье",
+      muscle: "на грудь",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-chest-1.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484215/2_k0gj7z.mp4",
+      goal: "Рост силы и массы грудных мышц",
+      steps: [
+        "Лягте на скамью, стопы на полу",
+        "Возьмите штангу хватом чуть шире плеч",
+        "Опустите штангу к середине груди",
+        "Выжмите вверх до полного выпрямления рук",
+      ],
+      important: ["Лопатки сведены", "Не отбивайте штангу от груди"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "13",
+      title: "Отжимания на брусьях",
+      muscle: "на грудь",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-chest-2.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/13_ywvnrd.mp4",
+      goal: "Нижняя часть груди и трицепс",
+      steps: ["Возьмитесь за брусья", "Наклоните корпус вперед", "Опуститесь до параллели", "Выжмите себя вверх"],
+      important: ["Контролируйте глубину", "Без рывков"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+  ],
   legs: [],
-  back: [],
+  back: [
+    {
+      id: "3",
+      title: "Горизонтальная тяга блока узким хватом",
+      muscle: "на спину",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-back-1.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484214/3_fhi4be.mp4",
+      goal: "Толщина и детализация спины",
+      steps: [
+        "Сядьте к тренажеру, спина прямая",
+        "Возьмитесь за рукоять узким хватом",
+        "Потяните рукоять к животу",
+        "Медленно вернитесь в исходное положение",
+      ],
+      important: ["Тяните спиной, а не руками", "Не округляйте поясницу"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "4",
+      title: "Вертикальная тяга блока к груди",
+      muscle: "на спину",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-back-2.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/4_xxx19y.mp4",
+      goal: "Развитие широчайших мышц",
+      steps: [
+        "Возьмитесь за перекладину широким хватом",
+        "Потяните блок к верхней части груди",
+        "Сведите лопатки",
+        "Медленно отпустите вверх",
+      ],
+      important: ["Не отклоняйтесь сильно назад", "Контролируйте движение"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "5",
+      title: "Подтягивания параллельным хватом",
+      muscle: "на спину",
+      level: "Средний",
+      videoThumb: "/images/exercise-back-3.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/5_nvwigq.mp4",
+      goal: "Сила и объем спины и рук",
+      steps: ["Возьмитесь за параллельные рукояти", "Подтянитесь до уровня груди", "Медленно опуститесь вниз"],
+      important: ["Без рывков", "Полная амплитуда движения"],
+      suitable: ["Средний уровень", "Продвинутым"],
+    },
+    {
+      id: "8",
+      title: "Подтягивания с отягощением широким хватом",
+      muscle: "на спину",
+      level: "Продвинутым",
+      videoThumb: "/images/exercise-back-4.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484215/8_rzvm5z.mp4",
+      goal: "Максимальный рост ширины спины",
+      steps: [
+        "Закрепите дополнительный вес",
+        "Возьмитесь широким хватом",
+        "Подтянитесь до уровня груди",
+        "Медленно опуститесь",
+      ],
+      important: ["Без рывков", "Полный контроль движения"],
+      suitable: ["Продвинутым"],
+    },
+  ],
   arms: [
+    {
+      id: "6",
+      title: "Разгибание руки с гантелью в наклоне",
+      muscle: "на трицепс",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-arms-1.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484215/6_nbosg3.mp4",
+      goal: "Изоляция и форма трицепса",
+      steps: [
+        "Наклонитесь вперед, спина ровная",
+        "Локоть прижат к корпусу",
+        "Разогните руку назад",
+        "Вернитесь в исходное положение",
+      ],
+      important: ["Работает только предплечье", "Без раскачки"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "9",
+      title: "Подъем штанги стоя на бицепс",
+      muscle: "на бицепс",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-arms-2.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484215/9_hyfo4b.mp4",
+      goal: "Масса и сила бицепса",
+      steps: [
+        "Возьмите штангу хватом снизу",
+        "Локти прижаты к корпусу",
+        "Поднимите штангу к груди",
+        "Медленно опустите",
+      ],
+      important: ["Не раскачивайтесь", "Работают только руки"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "10",
+      title: "Разгибание руки с гантелью в наклоне (вариант)",
+      muscle: "на трицепс",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-arms-4.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484214/10_kt9kqx.mp4",
+      goal: "Добивка трицепса",
+      steps: ["Аналогично упражнению №6", "Используйте меньший вес", "Делайте медленно и подконтрольно"],
+      important: ["Максимальная концентрация"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+    {
+      id: "11",
+      title: "Обратные отжимания",
+      muscle: "на трицепс",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-arms-5.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/11_vffgoh.mp4",
+      goal: "Сила и объем трицепса",
+      steps: ["Упритесь руками в скамью", "Опускайтесь, сгибая локти", "Выжмите тело вверх"],
+      important: ["Локти назад", "Не опускайтесь слишком низко"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
     {
       id: "12",
       title: "Молотки",
       muscle: "на бицепс и предплечья",
       level: "Новичкам",
       videoThumb: "/images/exercise-arms-3.jpg",
-      videoUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/molotki-I6GQOaXfeNS5j1PYWgSWXhxOi3vkTi.mp4",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484912/molotkii_wkrrvn.mp4",
       goal: "Рост и форма бицепса без нагрузки на локти",
       steps: [
         "Руки вдоль тела",
@@ -41,25 +205,49 @@ const exercises: Record<MuscleGroup, Exercise[]> = {
       important: ["Локти прижаты к корпусу, без раскачки.", "Тренируйтесь размеренно, без рывков."],
       suitable: ["Начинающим", "Средний уровень"],
     },
+    {
+      id: "14",
+      title: "Разгибание рук в блоке стоя",
+      muscle: "на трицепс",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-arms-6.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/12_epckk0.mp4",
+      goal: "Изоляция трицепса",
+      steps: ["Возьмитесь за рукоять блока", "Локти прижаты к телу", "Разогните руки вниз", "Медленно вернитесь"],
+      important: ["Без раскачки", "Постоянное напряжение"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
   ],
-  shoulders: [],
+  shoulders: [
+    {
+      id: "1",
+      title: "Тяга штанги к подбородку",
+      muscle: "на плечи",
+      level: "Новичкам",
+      videoThumb: "/images/exercise-shoulders-1.jpg",
+      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/1_dg7hfr.mp4",
+      goal: "Развитие средних дельт и трапеций",
+      steps: [
+        "Возьмите штангу хватом чуть уже плеч",
+        "Штанга у бедер, спина прямая",
+        "Тяните штангу вверх вдоль тела",
+        "Поднимите до уровня подбородка",
+        "Медленно опустите вниз",
+      ],
+      important: ["Локти всегда выше кистей", "Не раскачивайтесь корпусом"],
+      suitable: ["Начинающим", "Средний уровень"],
+    },
+  ],
   glutes: [],
   abs: [],
   warmup: [],
 }
 
-const muscleGroups = [
-  { id: "chest" as MuscleGroup, label: "Грудь", icon: Dumbbell },
-  { id: "legs" as MuscleGroup, label: "Ноги", icon: Dumbbell },
-  { id: "back" as MuscleGroup, label: "Спина", icon: Dumbbell },
-  { id: "arms" as MuscleGroup, label: "Руки", icon: Dumbbell },
-  { id: "shoulders" as MuscleGroup, label: "Дельты", icon: Dumbbell },
-  { id: "glutes" as MuscleGroup, label: "Ягодицы", icon: Dumbbell },
-  { id: "abs" as MuscleGroup, label: "Пресс", icon: Dumbbell },
-  { id: "warmup" as MuscleGroup, label: "Разминка", icon: Dumbbell },
-]
+interface ExercisesSectionProps {
+  onModalChange?: (isOpen: boolean) => void
+}
 
-export function ExercisesSection() {
+export function ExercisesSection({ onModalChange }: ExercisesSectionProps) {
   const [selectedMuscle, setSelectedMuscle] = useState<MuscleGroup>("arms")
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null)
 
@@ -70,6 +258,16 @@ export function ExercisesSection() {
     const message = "Здравствуйте, хочу записаться на пробную тренировку!"
     const encodedMessage = encodeURIComponent(message)
     window.open(`https://t.me/+79194498792?text=${encodedMessage}`, "_blank")
+  }
+
+  const handleExerciseClick = (exercise: Exercise) => {
+    setSelectedExercise(exercise)
+    onModalChange?.(true)
+  }
+
+  const handleCloseModal = () => {
+    setSelectedExercise(null)
+    onModalChange?.(false)
   }
 
   return (
@@ -143,7 +341,7 @@ export function ExercisesSection() {
                   </span>
 
                   <button
-                    onClick={() => setSelectedExercise(exercise)}
+                    onClick={() => handleExerciseClick(exercise)}
                     className="px-4 py-2 rounded-lg font-medium text-sm transition-all bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black"
                   >
                     Подробнее
@@ -168,12 +366,19 @@ export function ExercisesSection() {
 
       {/* Modal */}
       {selectedExercise && (
-        <ExerciseModal
-          isOpen={!!selectedExercise}
-          onClose={() => setSelectedExercise(null)}
-          exercise={selectedExercise}
-        />
+        <ExerciseModal isOpen={!!selectedExercise} onClose={handleCloseModal} exercise={selectedExercise} />
       )}
     </section>
   )
 }
+
+const muscleGroups = [
+  { id: "chest" as MuscleGroup, label: "Грудь", icon: Dumbbell },
+  { id: "legs" as MuscleGroup, label: "Ноги", icon: Dumbbell },
+  { id: "back" as MuscleGroup, label: "Спина", icon: Dumbbell },
+  { id: "arms" as MuscleGroup, label: "Руки", icon: Dumbbell },
+  { id: "shoulders" as MuscleGroup, label: "Дельты", icon: Dumbbell },
+  { id: "glutes" as MuscleGroup, label: "Ягодицы", icon: Dumbbell },
+  { id: "abs" as MuscleGroup, label: "Пресс", icon: Dumbbell },
+  { id: "warmup" as MuscleGroup, label: "Разминка", icon: Dumbbell },
+]

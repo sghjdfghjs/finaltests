@@ -5,7 +5,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 
-export function Header() {
+interface HeaderProps {
+  isHidden?: boolean
+}
+
+export function Header({ isHidden = false }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
@@ -24,7 +28,9 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 mx-4 mt-4 md:mx-8 md:mt-6">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 mx-4 mt-4 md:mx-8 md:mt-6 transition-opacity duration-300 ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+    >
       <nav
         className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-2 md:px-6 md:py-2.5 rounded-3xl shadow-lg backdrop-blur-xl"
         style={{ background: "rgba(15, 26, 15, 0.6)" }}

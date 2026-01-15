@@ -10,18 +10,16 @@ export function HeroSection() {
   }
 
   return (
-    <section id="hero" className="relative pt-20 md:pt-24 pb-12 md:pb-20 px-4 md:px-6">
-      <div
-        className="absolute left-[35%] lg:left-[45%] top-[15%] w-[400px] h-[550px] lg:w-[500px] lg:h-[650px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(178, 220, 118, 0.25), rgba(178, 220, 118, 0.15) 40%, transparent 70%)",
-          zIndex: 1,
-        }}
-      />
-
-      <div className="mx-auto max-w-[1400px]">
-        <div className="relative rounded-3xl md:rounded-[32px] p-8 md:p-12 lg:p-16 overflow-hidden">
+    <section
+      id="hero"
+      className="relative pt-20 md:pt-24 pb-12 md:pb-20 px-4 md:px-6"
+      style={{
+        background:
+          "radial-gradient(circle 350px at 65% 50%, rgba(178, 220, 118, 0.25), rgba(178, 220, 118, 0.12) 50%, transparent 75%)",
+      }}
+    >
+      <div className="mx-auto max-w-[1400px] relative">
+        <div className="relative rounded-3xl md:rounded-[32px] p-8 md:p-12 lg:p-16">
           {/* Dot pattern overlay */}
           <div
             className="absolute inset-0 opacity-[0.03] pointer-events-none"
