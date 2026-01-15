@@ -285,7 +285,7 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
                 </button>
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-black/40 backdrop-blur-sm">
                   <p className="text-xs md:text-sm text-[#E5E7EB] text-center font-medium whitespace-nowrap">
-                    Первая консультация бесплатно
+                    Пробная консультация бесплатно
                   </p>
                 </div>
               </div>
