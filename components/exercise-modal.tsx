@@ -28,7 +28,16 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
 
   const toggleFullscreen = () => {
     if (videoRef.current) {
-      if (!document.fullscreenElement) {
+      // Check if video element has webkit fullscreen method (iOS Safari)
+      if ("webkitEnterFullscreen" in videoRef.current) {
+        try {
+          ;(videoRef.current as any).webkitEnterFullscreen()
+        } catch (err) {
+          console.error("Error entering fullscreen on iOS:", err)
+        }
+      }
+      // Standard fullscreen API (Desktop and Android)
+      else if (!document.fullscreenElement) {
         videoRef.current.requestFullscreen().catch((err) => {
           console.error("Error attempting to enable fullscreen:", err)
         })
