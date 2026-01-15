@@ -165,18 +165,6 @@ const exercises: Record<MuscleGroup, Exercise[]> = {
       suitable: ["Начинающим", "Средний уровень"],
     },
     {
-      id: "10",
-      title: "Разгибание руки с гантелью в наклоне (вариант)",
-      muscle: "на трицепс",
-      level: "Новичкам",
-      videoThumb: "/images/exercise-arms-4.jpg",
-      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484214/10_kt9kqx.mp4",
-      goal: "Добивка трицепса",
-      steps: ["Аналогично упражнению №6", "Используйте меньший вес", "Делайте медленно и подконтрольно"],
-      important: ["Максимальная концентрация"],
-      suitable: ["Начинающим", "Средний уровень"],
-    },
-    {
       id: "11",
       title: "Обратные отжимания",
       muscle: "на трицепс",
