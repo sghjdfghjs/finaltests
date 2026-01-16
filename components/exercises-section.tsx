@@ -22,18 +22,6 @@ interface Exercise {
 const exercises: Record<MuscleGroup, Exercise[]> = {
   chest: [
     {
-      id: "1",
-      title: "Жим гантелей лежа",
-      muscle: "на грудные мышцы",
-      level: "Новичкам",
-      videoThumb: "/images/exercise-chest-1.jpg",
-      videoUrl: "https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/f_auto,q_auto/v1234567890/chest-press.mp4",
-      goal: "Развитие грудных мышц",
-      steps: ["Лягте на скамью, гантели над грудью", "Опустите гантели к груди", "Выжмите вверх"],
-      important: ["Не разводите локти слишком широко", "Контролируйте движение"],
-      suitable: ["Начинающим", "Средний уровень"],
-    },
-    {
       id: "2",
       title: "Жим штанги лежа на горизонтальной скамье",
       muscle: "на грудь",
