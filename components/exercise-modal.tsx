@@ -9,6 +9,7 @@ interface ExerciseModalProps {
   isOpen: boolean
   onClose: () => void
   exercise: {
+    id: string
     title: string
     muscle: string
     goal: string
@@ -157,6 +158,13 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
                     ref={videoRef}
                     src={`${exercise.videoUrl}#t=0.1`}
                     className="w-full h-full object-cover"
+                    style={
+                      exercise.id === "9" || exercise.id === "ex12"
+                        ? { objectPosition: "center 20%" }
+                        : exercise.id === "ex13"
+                          ? { objectPosition: "center 70%" }
+                          : undefined
+                    }
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleLoadedMetadata}
                     playsInline

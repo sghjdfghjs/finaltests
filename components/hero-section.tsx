@@ -128,7 +128,7 @@ export function HeroSection() {
                 <div className="relative w-fit">
                   <button
                     onClick={handleTelegramClick}
-                    className="inline-flex items-center justify-center px-8 md:px-10 py-3.5 rounded-2xl font-sans text-base md:text-lg font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5 bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black shadow-lg shadow-[#b2dc76]/20 hover:shadow-[#b2dc76]/40"
+                    className="inline-flex items-center justify-center px-8 md:px-10 py-3.5 rounded-2xl font-sans text-base md:text-lg font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5 bg-gradient-to-r from-[#b2dc76] to-[#8fbd4f] hover:from-[#8fbd4f] hover:to-[#7aa63d] text-black shadow-lg shadow-[#b2dc76]/20 hover:shadow-[#b2dc76]/40 w-full"
                   >
                     Записаться на первую тренировку
                   </button>
@@ -137,6 +137,17 @@ export function HeroSection() {
                       Первая консультация бесплатно
                     </p>
                   </div>
+                </div>
+                <div className="w-fit">
+                  <button
+                    onClick={() => {
+                      const exercisesSection = document.getElementById('exercises')
+                      exercisesSection?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="inline-flex items-center justify-center px-8 md:px-10 py-3.5 rounded-2xl font-sans text-base md:text-lg font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5 text-white border-2 border-white/20 hover:border-white/40 w-full bg-transparent"
+                  >
+                    Как я тренирую
+                  </button>
                 </div>
               </div>
 
