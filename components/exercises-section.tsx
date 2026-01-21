@@ -203,7 +203,7 @@ const exercises: Record<MuscleGroup, Exercise[]> = {
       muscle: "на спину",
       level: "Средний",
       videoThumb: "/images/exercise-back-3.jpg",
-      videoUrl: "https://res.cloudinary.com/dz2ksvggk/video/upload/v1768484212/5_nvwigq.mp4",
+      videoUrl: "",
       goal: "Сила и объем спины и рук",
       steps: ["Возьмитесь за параллельные рукояти", "Подтянитесь до уровня груди", "Медленно опуститесь вниз"],
       important: ["Без рывков", "Полная амплитуда движения"],
@@ -621,9 +621,9 @@ export function ExercisesSection({ onModalChange }: ExercisesSectionProps) {
                       src={`${exercise.videoUrl}#t=0.1`}
                       className="w-full h-full object-cover"
                       style={
-                        exercise.id === "9" || exercise.id === "ex12"
+                        exercise.id === "9" || exercise.id === "8"
                           ? { objectPosition: "center 20%" }
-                          : exercise.id === "ex13"
+                          : exercise.id === "ex12" || exercise.id === "ex13"
                             ? { objectPosition: "center 70%" }
                             : undefined
                       }

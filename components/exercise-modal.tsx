@@ -27,6 +27,12 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
+  const handleClose = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    onClose()
+  }
+
   const toggleFullscreen = () => {
     if (videoRef.current) {
       // Check if video element has webkit fullscreen method (iOS Safari)
@@ -102,18 +108,20 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
 
   useEffect(() => {
     if (isOpen) {
+      const scrollY = window.scrollY
       document.body.style.overflow = "hidden"
       document.body.style.position = "fixed"
       document.body.style.width = "100%"
-      document.body.style.top = `-${window.scrollY}px`
+      document.body.style.top = `-${scrollY}px`
+      document.body.dataset.scrollY = String(scrollY)
     } else {
-      const scrollY = document.body.style.top
-      document.body.style.overflow = "unset"
+      const scrollY = document.body.dataset.scrollY
+      document.body.style.overflow = ""
       document.body.style.position = ""
       document.body.style.width = ""
       document.body.style.top = ""
       if (scrollY) {
-        window.scrollTo(0, Number.parseInt(scrollY || "0", 10) * -1)
+        window.scrollTo(0, Number.parseInt(scrollY))
       }
       if (videoRef.current) {
         videoRef.current.pause()
@@ -123,10 +131,14 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
       }
     }
     return () => {
-      document.body.style.overflow = "unset"
+      const scrollY = document.body.dataset.scrollY
+      document.body.style.overflow = ""
       document.body.style.position = ""
       document.body.style.width = ""
       document.body.style.top = ""
+      if (scrollY && !isOpen) {
+        window.scrollTo(0, Number.parseInt(scrollY))
+      }
     }
   }, [isOpen])
 
@@ -135,13 +147,13 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
   return (
     <div className="fixed inset-0 z-[99999] flex items-start md:items-center justify-center md:p-4 pointer-events-auto overflow-y-auto">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" onClick={handleClose} />
 
       {/* Modal */}
       <div className="relative w-full md:max-w-5xl min-h-screen md:min-h-0 md:max-h-[90vh] bg-gradient-to-br from-[#0d1a0d] to-[#050f05] md:rounded-3xl border-t md:border border-[#2d4a2d]/50 shadow-2xl pointer-events-auto z-10 overflow-y-auto">
         {/* Close button */}
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="sticky md:absolute top-4 md:top-6 right-4 md:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors z-10 ml-auto mr-4 md:mr-0 mt-4 md:mt-0"
         >
           <X className="w-6 h-6 text-white" />
@@ -159,9 +171,9 @@ export function ExerciseModal({ isOpen, onClose, exercise }: ExerciseModalProps)
                     src={`${exercise.videoUrl}#t=0.1`}
                     className="w-full h-full object-cover"
                     style={
-                      exercise.id === "9" || exercise.id === "ex12"
+                      exercise.id === "9" || exercise.id === "8"
                         ? { objectPosition: "center 20%" }
-                        : exercise.id === "ex13"
+                        : exercise.id === "ex12" || exercise.id === "ex13"
                           ? { objectPosition: "center 70%" }
                           : undefined
                     }
