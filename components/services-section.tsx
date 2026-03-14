@@ -11,59 +11,51 @@ export function ServicesSection() {
   const pricingData = {
     gym: {
       Одиночная: {
-        "3": "6000₽",
-        "5": "9000₽",
-        "8": "14000₽",
-        "10": "17000₽",
-        "12": "18000₽",
+        "1": { price: "2000₽", old: null },
+        "5": { price: "9500₽", old: null },
+        "10": { price: "18000₽", old: null },
+        "12": { price: "20400₽", old: "24000₽" },
       },
       "Сплит (вдвоем)": {
-        "1": "2500₽",
-        "5": "11500₽",
-        "10": "22000₽",
-        "12": "24000₽",
+        "1": { price: "3000₽", old: null },
+        "5": { price: "12500₽", old: null },
+        "10": { price: "22000₽", old: null },
+        "12": { price: "26400₽", old: "30000₽" },
       },
     },
     boxing: {
-      "3": "6000₽",
-      "5": "9000₽",
-      "8": "14000₽",
-      "10": "17000₽",
-      "12": "18000₽",
+      "1": { price: "2000₽", old: null },
+      "5": { price: "9500₽", old: null },
+      "10": { price: "18000₽", old: null },
+      "12": { price: "20400₽", old: "24000₽" },
     },
     functional: {
-      "3": "6000₽",
-      "5": "9000₽",
-      "8": "14000₽",
-      "10": "17000₽",
-      "12": "18000₽",
+      "1": { price: "2000₽", old: null },
+      "5": { price: "9500₽", old: null },
+      "10": { price: "18000₽", old: null },
+      "12": { price: "20400₽", old: "24000₽" },
     },
   }
 
-  const getSessionOptions = () => {
-    if (selectedType === "Одиночная") {
-      return ["3", "5", "8", "10", "12"]
-    } else {
-      return ["1", "5", "10", "12"]
-    }
+  const SESSION_OPTIONS = ["1", "5", "10", "12"]
+
+  const getCurrentPricing = () => {
+    return pricingData.gym[selectedType][selectedSessions as keyof typeof pricingData.gym.Одиночная] || { price: "2000₽", old: null }
   }
 
-  const getCurrentPrice = () => {
-    return pricingData.gym[selectedType][selectedSessions as keyof typeof pricingData.gym.Одиночная] || "9900₽"
+  const getBoxingPricing = () => {
+    return pricingData.boxing[boxingSessions as keyof typeof pricingData.boxing] || { price: "2000₽", old: null }
   }
 
-  const getBoxingPrice = () => {
-    return pricingData.boxing[boxingSessions as keyof typeof pricingData.boxing] || "17000₽"
-  }
-
-  const getFunctionalPrice = () => {
-    return pricingData.functional[functionalSessions as keyof typeof pricingData.functional] || "17000₽"
+  const getFunctionalPricing = () => {
+    return pricingData.functional[functionalSessions as keyof typeof pricingData.functional] || { price: "2000₽", old: null }
   }
 
   const handleTypeChange = (type: "Одиночная" | "Сплит (вдвоем)") => {
     setSelectedType(type)
-    const options = type === "Одиночная" ? ["3", "5", "8", "10", "12"] : ["1", "5", "10", "12"]
-    setSelectedSessions(options.includes(selectedSessions) ? selectedSessions : options[3] || options[0])
+    if (!SESSION_OPTIONS.includes(selectedSessions)) {
+      setSelectedSessions("10")
+    }
   }
 
   const generateTelegramUrl = (serviceTitle: string, sessions: string, type?: string) => {
@@ -75,6 +67,27 @@ export function ServicesSection() {
     const encodedMessage = encodeURIComponent(message)
     return `https://t.me/+79194498792?text=${encodedMessage}`
   }
+
+  const sessionLabel = (option: string) =>
+    option === "1" ? "1 тренировка" : `${option} тренировок`
+
+  const selectClass =
+    "w-full max-w-[200px] md:max-w-[220px] bg-[#1A2228] text-white px-3 md:px-4 py-2 rounded-lg text-sm border-0 mb-3 md:mb-4 cursor-pointer hover:bg-[#242C34] transition-colors appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCw2IEw4LDEwIEwxMiw2IiBzdHJva2U9IiNiMmRjNzYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+')] bg-[length:16px] bg-[right_0.75rem_center] bg-no-repeat pr-10"
+
+  const PriceDisplay = ({ pricing }: { pricing: { price: string; old: string | null } }) => (
+    <div className="mb-3 md:mb-4">
+      <p className="text-sm text-[#A1A7A4] mb-1">ОТ</p>
+      <div className="flex items-baseline gap-3">
+        <p className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">{pricing.price}</p>
+        {pricing.old && (
+          <p className="text-base md:text-lg text-[#6B7280] line-through">{pricing.old}</p>
+        )}
+      </div>
+      {pricing.old && (
+        <p className="text-xs text-[#b2dc76] mt-1 font-medium">Акция марта</p>
+      )}
+    </div>
+  )
 
   return (
     <section id="services" className="py-16 px-4 md:px-6 relative z-10 pb-8">
@@ -144,17 +157,14 @@ export function ServicesSection() {
                   onChange={(e) => setSelectedSessions(e.target.value)}
                   className="w-full max-w-[200px] md:max-w-[220px] lg:max-w-[280px] bg-[#1A2228] text-white px-3 md:px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-sm border-0 mb-3 md:mb-4 lg:mb-6 cursor-pointer hover:bg-[#242C34] transition-colors appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCw2IEw4LDEwIEwxMiw2IiBzdHJva2U9IiNiMmRjNzYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+')] bg-[length:16px] bg-[right_0.75rem_center] lg:bg-[right_1rem_center] bg-no-repeat pr-10 lg:pr-12"
                 >
-                  {getSessionOptions().map((option) => (
+                  {SESSION_OPTIONS.map((option) => (
                     <option key={option} value={option}>
-                      {option} {option === "1" ? "тренировка" : "тренировок"}
+                      {sessionLabel(option)}
                     </option>
                   ))}
                 </select>
 
-                <div className="mb-3 md:mb-4">
-                  <p className="text-sm text-[#A1A7A4] mb-1">ОТ</p>
-                  <p className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white">{getCurrentPrice()}</p>
-                </div>
+                <PriceDisplay pricing={getCurrentPricing()} />
 
                 <a
                   href={generateTelegramUrl("Тренировки в зале", selectedSessions, selectedType)}
@@ -208,19 +218,16 @@ export function ServicesSection() {
                 <select
                   value={boxingSessions}
                   onChange={(e) => setBoxingSessions(e.target.value)}
-                  className="w-full max-w-[200px] md:max-w-[220px] bg-[#1A2228] text-white px-3 md:px-4 py-2 rounded-lg text-sm border-0 mb-3 md:mb-4 cursor-pointer hover:bg-[#242C34] transition-colors appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCw2IEw4LDEwIEwxMiw2IiBzdHJva2U9IiNiMmRjNzYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+')] bg-[length:16px] bg-[right_0.75rem_center] bg-no-repeat pr-10"
+                  className={selectClass}
                 >
-                  {["3", "5", "8", "10", "12"].map((option) => (
+                  {SESSION_OPTIONS.map((option) => (
                     <option key={option} value={option}>
-                      {option} тренировок
+                      {sessionLabel(option)}
                     </option>
                   ))}
                 </select>
 
-                <div className="mb-3 md:mb-4">
-                  <p className="text-sm text-[#A1A7A4] mb-1">ОТ</p>
-                  <p className="text-3xl md:text-4xl font-semibold text-white">{getBoxingPrice()}</p>
-                </div>
+                <PriceDisplay pricing={getBoxingPricing()} />
 
                 <a
                   href={generateTelegramUrl("Тренировки по боксу", boxingSessions)}
@@ -263,19 +270,16 @@ export function ServicesSection() {
                 <select
                   value={functionalSessions}
                   onChange={(e) => setFunctionalSessions(e.target.value)}
-                  className="w-full max-w-[200px] md:max-w-[220px] bg-[#1A2228] text-white px-3 md:px-4 py-2 rounded-lg text-sm border-0 mb-3 md:mb-4 cursor-pointer hover:bg-[#242C34] transition-colors appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNCw2IEw4LDEwIEwxMiw2IiBzdHJva2U9IiNiMmRjNzYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+')] bg-[length:16px] bg-[right_0.75rem_center] bg-no-repeat pr-10"
+                  className={selectClass}
                 >
-                  {["3", "5", "8", "10", "12"].map((option) => (
+                  {SESSION_OPTIONS.map((option) => (
                     <option key={option} value={option}>
-                      {option} тренировок
+                      {sessionLabel(option)}
                     </option>
                   ))}
                 </select>
 
-                <div className="mb-3 md:mb-4">
-                  <p className="text-sm text-[#A1A7A4] mb-1">ОТ</p>
-                  <p className="text-3xl md:text-4xl font-semibold text-white">{getFunctionalPrice()}</p>
-                </div>
+                <PriceDisplay pricing={getFunctionalPricing()} />
 
                 <a
                   href={generateTelegramUrl("Функциональные тренировки", functionalSessions)}
