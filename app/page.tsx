@@ -23,6 +23,18 @@ export default function Home() {
         <ServicesSection />
         <ExercisesSection onModalChange={setIsModalOpen} />
         <ReviewsSection />
+
+        <footer className="relative border-t border-white/10 px-4 py-8">
+          <div className="mx-auto max-w-7xl space-y-2 text-xs leading-relaxed text-white/60">
+            <p className="font-semibold">ИП Жеребной Ян Николаевич</p>
+            <p className="font-semibold">ИНН 590311317315, ОГРН ИП 317595800067501</p>
+            <p>Юридический адрес: 614068, г.Пермь, ул.Ленина, 90-6</p>
+            <p>
+              Адрес местонахождения: 614500, г. Пермь, ул. Подлесная 3Б, офис 303, 3 этаж, тел. 8-919-44-60-904,
+            </p>
+            <p>тел./факс: (342) 291-91-92</p>
+          </div>
+        </footer>
       </div>
     </main>
   )
